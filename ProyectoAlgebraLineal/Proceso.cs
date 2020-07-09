@@ -13,7 +13,7 @@ namespace ProyectoAlgebraLineal
 {
     public class Proceso
     {
-        static string FiltrosPath = Path.Combine(Directory.GetCurrentDirectory(), "filtros.txt");
+        static string FiltrosPath = Path.Combine(Directory.GetCurrentDirectory(), "Filtros.txt");
         static string PesonalizadoPath = Path.Combine(Directory.GetCurrentDirectory(), "FiltroPersonalizado.txt");
         public static List<string> ObtenerFiltrosLista()
         {
@@ -51,7 +51,8 @@ namespace ProyectoAlgebraLineal
                 }
             }
 
-            var matrizNuevaImagen = MatrizFitroAplicado(matrizImagen, filtro);
+            var matrizFiltro = ObtenerMatrizFiltro(filtro);
+            var matrizNuevaImagen = Aplicacion.ObtenerMatrizFitroAplicado(matrizImagen, matrizFiltro, alto, ancho);
 
             var imagenNueva = new Bitmap(imagen.Width, imagen.Height);
 
@@ -67,15 +68,7 @@ namespace ProyectoAlgebraLineal
             return imagenNueva;
         }
 
-        static double[,] MatrizFitroAplicado(double[,] original, string filtro)
-        {
-            var matrizFiltro = ObtenerMatrizFiltro(filtro);
-
-            var hola = string.Empty;
-
-            return null;
-        }
-
+        
         static double[,] ObtenerMatrizFiltro(string filtro)
         {
             var matrizFiltro = new double[3,3];
@@ -83,7 +76,7 @@ namespace ProyectoAlgebraLineal
 
             if (filtro == "personalizado")
             {
-                using (var reader = new StreamReader(FiltrosPath))
+                using (var reader = new StreamReader(PesonalizadoPath))
                 {
                     while (!reader.EndOfStream)
                     {
