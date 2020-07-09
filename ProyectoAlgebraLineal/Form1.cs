@@ -40,26 +40,9 @@ namespace ProyectoAlgebraLineal
 
                 pictureBox1.Image = imagen;
 
-                label1.Text = "ancho: " + Convert.ToString(imagen.Width); //BORRAR JAJA
-                label2.Text = "alto: " + Convert.ToString(imagen.Height); //BORRAR TAMBIEN JAJA SOLO SON PRUEBAS
-                
+                pictureBox2.Image = Proceso.DevolverImagenResultante(imagen);
+
                 //cuando son en escala de grises tienen siempre el mismo valor de R,G y B y A 255
-
-
-                
-                for (int i = 0; i < imagen.Width; i++)
-                {
-                    for (int j = 0; j < imagen.Height; j++)
-                    {
-                        var pixel = imagen.GetPixel(i, j);
-
-                        if (pixel == null)
-                        {
-                            //**Store pixel here in a array or list or whatever**
-                        }
-                    }
-                }
-                
 
 
             }
