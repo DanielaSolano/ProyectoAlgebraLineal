@@ -20,7 +20,11 @@ namespace ProyectoAlgebraLineal
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            var opcionesFiltros = Proceso.ObtenerFiltrosLista();
+            foreach (var item in opcionesFiltros)
+            {
+                comboBoxFiltros.Items.Add(item);
+            }
             
         }
 

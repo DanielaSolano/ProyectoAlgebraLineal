@@ -14,10 +14,22 @@ namespace ProyectoAlgebraLineal
 {
     public class Proceso
     {
-        //convertir imagen original a matriz
-        float[,] ObtenerMatrizImagen (Bitmap imagen)
+        public static List<string> ObtenerFiltrosLista()
         {
-            return null;
+            var filtros = new List<string>();
+            var filtrosPath = Path.Combine(Directory.GetCurrentDirectory(), "filtros.txt");
+
+            using (var reader = new StreamReader(filtrosPath))
+            {
+                while(!reader.EndOfStream)
+                {
+                    var linea = reader.ReadLine();
+                    var nombre = linea.Split(',')[0]; //nombre en la poscicion 0 de cada linea en el archivo
+                    filtros.Add(nombre);
+                }
+            }
+
+            return filtros;
         }
 
         public static void ProcesarImagen(Bitmap imagen)
@@ -51,10 +63,7 @@ namespace ProyectoAlgebraLineal
             {
                 for (int j = 0; j < alto; j++)
                 {
-
-
                     matrizImagen[i, j] = Convert.ToDouble( imagen.GetPixel(i, j).R);
-
                 }
             }
 
@@ -69,19 +78,6 @@ namespace ProyectoAlgebraLineal
                     imagenNueva.SetPixel(i, j, colorPixel);
                 }
             }
-
-            
-
-            //var data = imagen.LockBits(new Rectangle(Point.Empty, imagen.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
-            //Marshal.Copy(bytesMatriz, 0, data.Scan0, bytesMatriz.Length);
-
-            //imagenNueva.UnlockBits(data);
-
-            //using (var ms = new MemoryStream(bytesMatriz))
-            //{
-            //    imagenNueva = new Bitmap(ms);
-            //}
-
             return imagenNueva;
         }
     }
