@@ -35,39 +35,27 @@ namespace ProyectoAlgebraLineal
 
         private void btnCargarOriginal_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Image Files  (*.png;)|*.png;";            
-
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if(comboBoxFiltros.SelectedItem != null)
             {
-                var imagen = new Bitmap(ofd.FileName);
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Image Files  (*.png;)|*.png;";
 
-                pictureBox1.Image = imagen;
-
-                pictureBox2.Image = Proceso.DevolverImagenResultante(imagen);
-
-                //cuando son en escala de grises tienen siempre el mismo valor de R,G y B y A 255
-
-
-            }
-
-
-
-            /*
-            
-            */
-
-            /*
-            byte[] imageToByteArray(Image image)
-            {
-                using (MemoryStream ms = new MemoryStream())
+                if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    return ms.ToArray();
+                    var imagen = new Bitmap(ofd.FileName);
+
+                    pictureBox1.Image = imagen;
+
+                    pictureBox2.Image = Proceso.ObtenerImagenResultante(imagen, (string)comboBoxFiltros.SelectedItem);
+
                 }
             }
-            */
+            else
+            {
+                MessageBox.Show("Debe tener un filtro seleccionado");
+            }
 
+            
 
         }
     }

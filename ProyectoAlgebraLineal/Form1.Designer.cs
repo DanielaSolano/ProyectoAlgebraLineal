@@ -66,11 +66,11 @@
             // 
             // btnCargarOriginal
             // 
-            this.btnCargarOriginal.Location = new System.Drawing.Point(54, 441);
+            this.btnCargarOriginal.Location = new System.Drawing.Point(232, 431);
             this.btnCargarOriginal.Name = "btnCargarOriginal";
             this.btnCargarOriginal.Size = new System.Drawing.Size(120, 39);
             this.btnCargarOriginal.TabIndex = 3;
-            this.btnCargarOriginal.Text = "Cargar Imagen";
+            this.btnCargarOriginal.Text = "Aplicar filtro a imagen";
             this.btnCargarOriginal.UseVisualStyleBackColor = true;
             this.btnCargarOriginal.Click += new System.EventHandler(this.btnCargarOriginal_Click);
             // 
@@ -86,7 +86,7 @@
             // comboBoxFiltros
             // 
             this.comboBoxFiltros.FormattingEnabled = true;
-            this.comboBoxFiltros.Location = new System.Drawing.Point(245, 441);
+            this.comboBoxFiltros.Location = new System.Drawing.Point(380, 441);
             this.comboBoxFiltros.Name = "comboBoxFiltros";
             this.comboBoxFiltros.Size = new System.Drawing.Size(209, 21);
             this.comboBoxFiltros.TabIndex = 5;

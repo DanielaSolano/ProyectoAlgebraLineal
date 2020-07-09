@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.IO;
 
@@ -14,12 +13,14 @@ namespace ProyectoAlgebraLineal
 {
     public class Proceso
     {
+        static string FiltrosPath = Path.Combine(Directory.GetCurrentDirectory(), "filtros.txt");
+        static string PesonalizadoPath = Path.Combine(Directory.GetCurrentDirectory(), "FiltroPersonalizado.txt");
         public static List<string> ObtenerFiltrosLista()
         {
             var filtros = new List<string>();
-            var filtrosPath = Path.Combine(Directory.GetCurrentDirectory(), "filtros.txt");
+            
 
-            using (var reader = new StreamReader(filtrosPath))
+            using (var reader = new StreamReader(FiltrosPath))
             {
                 while(!reader.EndOfStream)
                 {
@@ -28,31 +29,14 @@ namespace ProyectoAlgebraLineal
                     filtros.Add(nombre);
                 }
             }
+            filtros.Add("Personalizado");
 
             return filtros;
         }
 
-        public static void ProcesarImagen(Bitmap imagen)
-        {
-
-            var matrizImagen = new float[imagen.Height, imagen.Width];
-
-            for (int i = 0; i < imagen.Width; i++)
-            {
-                for (int j = 0; j < imagen.Height; j++)
-                {
-                    var pixel = imagen.GetPixel(i, j);
-
-                    if (pixel == null)
-                    {
-                        matrizImagen[i, j] = imagen.GetPixel(i, j).R;
-                    }
-                }
-            }
-        }
 
 
-        public static Bitmap DevolverImagenResultante(Bitmap imagen)
+        public static Bitmap ObtenerImagenResultante(Bitmap imagen, string filtro)
         {
             var alto = imagen.Height;
             var ancho = imagen.Width;
@@ -67,18 +51,84 @@ namespace ProyectoAlgebraLineal
                 }
             }
 
+            var matrizNuevaImagen = MatrizFitroAplicado(matrizImagen, filtro);
+
             var imagenNueva = new Bitmap(imagen.Width, imagen.Height);
 
             for (int i = 0; i < ancho; i++)
             {
                 for (int j = 0; j < alto; j++)
                 {
-                    var valor = Convert.ToInt32(matrizImagen[i, j]);
+                    var valor = Convert.ToInt32(matrizNuevaImagen[i, j]);
                     var colorPixel = Color.FromArgb(valor, valor, valor);
                     imagenNueva.SetPixel(i, j, colorPixel);
                 }
             }
             return imagenNueva;
+        }
+
+        static double[,] MatrizFitroAplicado(double[,] original, string filtro)
+        {
+            var matrizFiltro = ObtenerMatrizFiltro(filtro);
+
+            var hola = string.Empty;
+
+            return null;
+        }
+
+        static double[,] ObtenerMatrizFiltro(string filtro)
+        {
+            var matrizFiltro = new double[3,3];
+            var valores = new string[10];
+
+            if (filtro == "personalizado")
+            {
+                using (var reader = new StreamReader(FiltrosPath))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        valores = reader.ReadLine().Split(',');
+                    }
+                }
+
+                var cont = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        matrizFiltro[i, j] = Convert.ToDouble(valores[cont]);
+                        cont++;
+                    }
+                }
+
+                return matrizFiltro;
+            }
+            else
+            {
+                using (var reader = new StreamReader(FiltrosPath))
+                {
+                    
+                    while (!reader.EndOfStream)
+                    {
+                        var linea = reader.ReadLine();
+                        if (linea.Split(',')[0] == filtro)
+                        {
+                            valores = linea.Split(',');
+                        }
+                    }
+                }
+
+                var cont = 1;
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        matrizFiltro[i, j] = Convert.ToDouble(valores[cont]);
+                        cont++;
+                    }
+                }
+                return matrizFiltro;
+            }
         }
     }
 }
