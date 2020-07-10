@@ -34,35 +34,33 @@ namespace ProyectoAlgebraLineal
             return filtros;
         }
 
-
-
         public static Bitmap ObtenerImagenResultante(Bitmap imagen, string filtro)
         {
             var alto = imagen.Height;
             var ancho = imagen.Width;
 
-            var matrizImagen = new double[ancho, alto];
+            var matrizImagen = new double[alto, ancho];
 
-            for (int i = 0; i < ancho; i++)
+            for (int i = 0; i < alto; i++)
             {
-                for (int j = 0; j < alto; j++)
+                for (int j = 0; j < ancho; j++)
                 {
-                    matrizImagen[i, j] = Convert.ToDouble( imagen.GetPixel(i, j).R);
+                    matrizImagen[i, j] = Convert.ToDouble( imagen.GetPixel(j, i).R); //////
                 }
             }
 
             var matrizFiltro = ObtenerMatrizFiltro(filtro);
             var matrizNuevaImagen = Aplicacion.ObtenerMatrizFitroAplicado(matrizImagen, matrizFiltro, alto, ancho);
 
-            var imagenNueva = new Bitmap(imagen.Width, imagen.Height);
+            var imagenNueva = new Bitmap(imagen.Width, imagen.Height); ////////////////
 
-            for (int i = 0; i < ancho; i++)
+            for (int i = 0; i < alto; i++)
             {
-                for (int j = 0; j < alto; j++)
+                for (int j = 0; j < ancho; j++)
                 {
                     var valor = Convert.ToInt32(matrizNuevaImagen[i, j]);
                     var colorPixel = Color.FromArgb(valor, valor, valor);
-                    imagenNueva.SetPixel(i, j, colorPixel);
+                    imagenNueva.SetPixel(j, i, colorPixel); ///////////////
                 }
             }
             return imagenNueva;
