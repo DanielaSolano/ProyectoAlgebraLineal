@@ -34,6 +34,7 @@
             this.btnCargarOriginal = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxFiltros = new System.Windows.Forms.ComboBox();
+            this.btnPersonalizado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -91,11 +92,22 @@
             this.comboBoxFiltros.Size = new System.Drawing.Size(209, 21);
             this.comboBoxFiltros.TabIndex = 5;
             // 
+            // btnPersonalizado
+            // 
+            this.btnPersonalizado.Location = new System.Drawing.Point(752, 431);
+            this.btnPersonalizado.Name = "btnPersonalizado";
+            this.btnPersonalizado.Size = new System.Drawing.Size(126, 31);
+            this.btnPersonalizado.TabIndex = 6;
+            this.btnPersonalizado.Text = "Definir Personalizado";
+            this.btnPersonalizado.UseVisualStyleBackColor = true;
+            this.btnPersonalizado.Click += new System.EventHandler(this.btnPersonalizado_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 528);
+            this.Controls.Add(this.btnPersonalizado);
             this.Controls.Add(this.comboBoxFiltros);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCargarOriginal);
@@ -120,6 +132,7 @@
         private System.Windows.Forms.Button btnCargarOriginal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxFiltros;
+        private System.Windows.Forms.Button btnPersonalizado;
     }
 }
 

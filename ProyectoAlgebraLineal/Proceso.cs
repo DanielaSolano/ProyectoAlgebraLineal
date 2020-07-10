@@ -74,7 +74,7 @@ namespace ProyectoAlgebraLineal
             var matrizFiltro = new double[3,3];
             var valores = new string[10];
 
-            if (filtro == "personalizado")
+            if (filtro == "Personalizado")
             {
                 using (var reader = new StreamReader(PesonalizadoPath))
                 {
@@ -123,5 +123,15 @@ namespace ProyectoAlgebraLineal
                 return matrizFiltro;
             }
         }
+
+        public static void DefinirPersonalizado(string entrada)
+        {
+            using (var writer = new StreamWriter(PesonalizadoPath))
+            {
+                writer.WriteLine(entrada);
+            }
+
+        }
+
     }
 }
