@@ -61,6 +61,7 @@ namespace ProyectoAlgebraLineal
             matrizOperada[alto - 1, ancho - 1] = matrizOperada[alto - 2, ancho - 2];
 
 
+            //corrección rango de pixeles a [0-255]
             double max = 0;
             double min = 0;
 

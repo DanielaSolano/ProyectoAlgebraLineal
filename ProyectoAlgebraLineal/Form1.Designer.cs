@@ -53,17 +53,17 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(36, 38);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 36);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(443, 387);
+            this.pictureBox1.Size = new System.Drawing.Size(463, 408);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(514, 38);
+            this.pictureBox2.Location = new System.Drawing.Point(514, 36);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(414, 387);
+            this.pictureBox2.Size = new System.Drawing.Size(434, 408);
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 

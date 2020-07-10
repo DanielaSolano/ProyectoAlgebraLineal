@@ -45,14 +45,14 @@ namespace ProyectoAlgebraLineal
             {
                 for (int j = 0; j < ancho; j++)
                 {
-                    matrizImagen[i, j] = Convert.ToDouble( imagen.GetPixel(j, i).R); //////
+                    matrizImagen[i, j] = Convert.ToDouble(imagen.GetPixel(j, i).R); 
                 }
             }
 
             var matrizFiltro = ObtenerMatrizFiltro(filtro);
             var matrizNuevaImagen = Aplicacion.ObtenerMatrizFitroAplicado(matrizImagen, matrizFiltro, alto, ancho);
 
-            var imagenNueva = new Bitmap(imagen.Width, imagen.Height); ////////////////
+            var imagenNueva = new Bitmap(imagen.Width, imagen.Height); 
 
             for (int i = 0; i < alto; i++)
             {
@@ -60,7 +60,7 @@ namespace ProyectoAlgebraLineal
                 {
                     var valor = Convert.ToInt32(matrizNuevaImagen[i, j]);
                     var colorPixel = Color.FromArgb(valor, valor, valor);
-                    imagenNueva.SetPixel(j, i, colorPixel); ///////////////
+                    imagenNueva.SetPixel(j, i, colorPixel); 
                 }
             }
             return imagenNueva;
